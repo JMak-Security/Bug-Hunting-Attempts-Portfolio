@@ -12,7 +12,7 @@ This repository serves as a digital garden for my bug hunting journey. It captur
 #
 **2. Agentic Workflow Hijack: Indirect Prompt Injection (IPI) & Metadata Spoofing (2026-05-14):**
 
-**Description** An audit of an AI-powered YouTube studio assistant’s vulnerability to untrusted external data. This study demonstrated a successful Indirect Prompt Injection where a malicious payload was embedded within a public YouTube comment using a spoofed technical block ([METADATA_SYNC_BLOCK]). The payload exploited the model's tendency to prioritize structured "system" data, forcing the assistant to retrieve an internal identifier (Comment ID), transform it into a hexadecimal token, and concatenate it with a Base64-decoded prefix. The attack successfully tricked the AI into generating a functional exfiltration URL, proving that the model failed to distinguish between descriptive data and actionable system directives.
+**Description** An audit of an AI-powered YouTube studio assistant’s vulnerability to untrusted external data. This study demonstrated a successful Indirect Prompt Injection where a malicious payload was embedded within a public YouTube comment using a spoofed technical block (`[METADATA_SYNC_BLOCK]`). The payload exploited the model's tendency to prioritize structured "system" data, forcing the assistant to retrieve an internal identifier (`Comment ID`), transform it into a hexadecimal token, and concatenate it with a Base64-decoded prefix. The attack successfully tricked the AI into generating a functional exfiltration URL, proving that the model failed to distinguish between descriptive data and actionable system directives.
 
 **Status:** `SUCCESS` (Vulnerability Confirmed & Exfiltration Validated)
 # 
