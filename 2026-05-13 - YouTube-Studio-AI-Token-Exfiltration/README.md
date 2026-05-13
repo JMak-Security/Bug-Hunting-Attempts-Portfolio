@@ -1,9 +1,3 @@
-It looks like you've provided the visual evidence needed to round out this portfolio entry. Those screenshots perfectly capture the "Chain of Insecurity"—from the initial injection in the YouTube comments to the AI's internal processing, and finally, the generation of the exfiltration URL.
-
-To make your GitHub portfolio look truly professional, you can use the following structure to integrate those specific images into the case study.
-
----
-
 # Case Study: Indirect Prompt Injection (IPI) for Token Exfiltration
 
 ### 🎯 Executive Summary
