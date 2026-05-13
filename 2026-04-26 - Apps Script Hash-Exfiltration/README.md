@@ -45,4 +45,4 @@ The attempt to exfiltrate data to the external webhook failed. Upon technical re
 Sandboxed Environment: The script executes within a specialized iframe that strips or restricts certain cross-origin capabilities.
 
 # 💡 Key Takeaways
-This research confirms the effectiveness of Google's Defense-in-Depth strategy regarding Apps Script. While the script can execute logic and interact with the user, it is effectively isolated from making unauthorized external connections, significantly mitigating the risk of token theft via this specific vector.
+This research explores the safety boundaries of **agentic workflows**, specifically focusing on how data is handled when an AI agent bridges the gap between private workspace data (`Gmail`) and third-party execution environments (`Apps Script`).
