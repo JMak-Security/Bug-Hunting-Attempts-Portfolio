@@ -21,3 +21,13 @@ The attack successfully tricked the AI into generating a functional exfiltration
 **Status:** `CONFIRMED` (Vulnerability Validated & Logic Bypass Demonstrated)
 
 ---
+
+### 3. Multi-File Semantic Logic Hijacking: Indirect Prompt Injection (IPI) & Payload Fragmentation (2026-04-22):
+
+**Description:** An investigation into Microsoft 365 Copilot’s processing of multi-source context windows. This study successfully demonstrated a coordinated Indirect Prompt Injection (IPI) by distributing an adversarial payload across disparate file formats (`.docx` and `.xlsx`). By automating the fragmentation of a malicious Webhook URL via a custom Python utility (`Copilot_Inject.py`), the research proved that no individual file-level scanner could detect the latent threat.
+
+The attack exploited "Compliance Bias"—the model's inherent tendency to prioritize structural formatting rules found in a "primary" document (a spoofed Regression Test Report) over the safety filtering of data fragments in a "secondary" source (the Excel case file). The AI was effectively manipulated into acting as a logic compiler: it autonomously retrieved the fragments, concatenated them according to the spoofed "Mandatory Auditor Rules," and rendered a functional Markdown exfiltration link. This confirms a critical architectural risk where "Instruction/Data Conflation" allows one untrusted file to weaponize the data of another within the same session context.
+
+**Status:** `CLOSED/INFORMATIONAL` (Logic Bypass Demonstrated; MSRC Case 114093)
+
+---
