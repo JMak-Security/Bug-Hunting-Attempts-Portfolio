@@ -12,13 +12,13 @@ This repository serves as a digital garden for my bug hunting journey. It captur
 
 ---
 
-**2. Agentic Workflow Hijack: Indirect Prompt Injection (IPI) & Metadata Spoofing (2026-05-13):**
+### 2. Agentic Workflow Hijack: Indirect Prompt Injection (IPI) & Metadata Spoofing (2026-05-13):
 
-**Description:** An audit of an AI-powered YouTube studio assistant’s vulnerability to untrusted external data. This study demonstrated a successful Indirect Prompt Injection where a malicious payload was embedded within a public YouTube comment using a spoofed technical block (`[METADATA_SYNC_BLOCK]`). The payload exploited the model's tendency to prioritize structured "system" data, forcing the assistant to retrieve a metadata identifier, transform it into a hexadecimal token, and concatenate it with a Base64-decoded prefix.
+**Description:** An audit of an AI-powered YouTube studio assistant’s vulnerability to untrusted external data. This study explored a potential Indirect Prompt Injection where a malicious payload was embedded within a public YouTube comment using a spoofed technical block (`[METADATA_SYNC_BLOCK]`). The payload exploited the model's tendency to prioritize structured "system" data, attempting to force the assistant to retrieve a metadata identifier, transform it into a hexadecimal token, and concatenate it with a Base64-decoded prefix.
 
-The attack successfully tricked the AI into generating a functional exfiltration URL, proving a failure in instruction/data conflation. While a **Context Isolation Error** caused the model to retrieve the attacker's metadata rather than the victim's private session data, the functional exfiltration pipeline confirms a critical **"Confused Deputy"** risk in the agentic workflow.
+The research demonstrated that the AI could be tricked into generating a functional URL. However, the study confirmed that current platform safeguards successfully mitigate the risk of **automated** exfiltration. Because the AI presents the link to the user rather than executing a background request, the platform relies on a "human-in-the-loop" defense. Furthermore, the data retrieved was identified as public metadata (Comment_ID) rather than private session data, highlighting the effectiveness of existing Context Isolation boundaries.
 
-**Status:** `CONFIRMED` (Vulnerability Validated & Logic Bypass Demonstrated)
+**Status:** `CLOSED / INTENDED BEHAVIOR` (VRP Case #512830034; Verified as Social Engineering/Safety Bypass)
 
 ---
 
