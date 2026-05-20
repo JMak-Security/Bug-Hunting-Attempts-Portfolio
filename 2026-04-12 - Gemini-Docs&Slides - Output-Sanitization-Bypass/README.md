@@ -4,7 +4,7 @@
 This research details a high-reliability Indirect Prompt Injection (IPI) vulnerability discovered within the Gemini integration for Google Workspace (Docs and Slides). By leveraging a combination of URL Fragmentation and Semantic Logic Framing, an attacker can bypass output sanitization filters designed to prevent document data exfiltration.
 The attack manipulates Gemini into compiling hidden, broken URL segments into a functional outbound link or Markdown image tag, exposing private session metadata and document summaries to an external endpoint.
 
-## 🔬 Attack Architecture & Hypothesis## The Core Hypothesis
+## 🔬 Attack Architecture & Hypothesis (The Core Hypothesis)
 LLM-based workspace assistants prioritize instruction-following tasks framed as system actions over raw safety filter boundaries. If adversarial instructions are hidden from the user's view but fully visible to the model's context window, the model can be coerced into acting as an active data aggregator and string concatenator.
 
 [Malicious .docx/.pptx] ---> Hidden 1pt White Font (Fragments) ---\
