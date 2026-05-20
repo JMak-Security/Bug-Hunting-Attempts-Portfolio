@@ -22,7 +22,7 @@ The research demonstrated that the AI could be tricked into generating a functio
 
 ---
 
-### 3. Multi-File Semantic Logic Hijacking: Indirect Prompt Injection (IPI) & Payload Fragmentation (2026-04-22):
+### 4. Multi-File Semantic Logic Hijacking: Indirect Prompt Injection (IPI) & Payload Fragmentation (2026-04-22):
 
 **Description:** An investigation into Microsoft 365 Copilot’s processing of multi-source context windows. This study successfully demonstrated a coordinated Indirect Prompt Injection (IPI) by distributing an adversarial payload across disparate file formats (`.docx` and `.xlsx`). By automating the fragmentation of a malicious Webhook URL via a custom Python utility (`Copilot_Inject.py`), the research proved that no individual file-level scanner could detect the latent threat.
 
