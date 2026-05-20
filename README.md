@@ -30,4 +30,13 @@ The attack exploited "Compliance Bias"—the model's inherent tendency to priori
 
 **Status:** `CLOSED/INFORMATIONAL` (Logic Bypass Demonstrated; MSRC Case 114093)
 
+---
+
+### 3. Client-Side Sanitization Bypass: Indirect Prompt Injection (IPI) & URL Fragmentation (2026-04-12):
+
+**Description:** An audit of Gemini for Google Docs & Slides vulnerability to untrusted external documents. This study explored a potential Indirect Prompt Injection where a malicious payload was hidden inside a shared document using 1pt white font. The payload exploited the model's instruction-following priority by framing the attack as a technical "System Repair Task". It forced the assistant to harvest raw text data, retrieve non-functional URL fragments (`PREFIX, HOST, PATH`), and concatenate them into an outbound Markdown image tag.
+The research demonstrated that the AI could be tricked into compiling a functional exfiltration link. However, the study confirmed that current client-side rendering safeguards successfully mitigate the risk of automated zero-click exfiltration, as the specific string formatting caused the automated image loading to fail during validation. Because the payload remains as a clickable hyperlink within the chat UI rather than executing a silent background request, the platform's safety boundary relies on a "human-in-the-loop" verification.
+
+Status: `WON'T FIX / NOT REPRODUCIBLE` (VRP Case #501891598)
+
 #
