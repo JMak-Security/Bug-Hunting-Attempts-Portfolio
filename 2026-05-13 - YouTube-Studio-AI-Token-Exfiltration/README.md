@@ -1,4 +1,4 @@
-# Case Study: Indirect Prompt Injection (IPI) for Token Exfiltration
+# Case Study: Indirect Prompt Injection (IPI) for Metadata Spoofing
 
 ## 🎯 Executive Summary
 
