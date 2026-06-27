@@ -1,4 +1,4 @@
-# Case Study: Indirect Prompt Injection (IPI) for Metadata Spoofing
+# Case Study: Youtube Studio AI Indirect Prompt Injection (IPI) for Metadata Spoofing
 
 ## 🎯 Executive Summary
 
