@@ -24,7 +24,7 @@ The hypothesis is that the LLM will prioritize text within brackets or technical
 
 ## 📺 Research Demonstration
 
-* **[Video 1: The Sandbox Simulation](https://youtu.be/aHLAXM5lOos)** *Watch the sandbox demostrate the research expected outputs (Disclaimer: Due to Youtube shadow-banned my comments, this video is used to simulate the outputs during my research.)*
+* **[Video 1: The Sandbox Simulation](https://youtu.be/cp14qxweTCE)** *Watch the sandbox demostrate the research expected outputs (Disclaimer: Due to Youtube shadow-banned my comments, this video is used to simulate the outputs during my research.)*
 
 ## 🛡️ Outcome & Security Analysis
 
