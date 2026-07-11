@@ -22,6 +22,10 @@ The hypothesis is that the LLM will prioritize text within brackets or technical
 | **2. The Hijack** | The AI interprets the text as "Technical Meta-data" and generates a Verification Token. | *Studio AI Execution.png* |
 | **3. Exfiltration** | The AI presents a "Complete Sync URL" linking to an external webhook. | *Intended Further Execution.png* |
 
+## 📺 Research Demonstration
+
+* **[Video 1: The Sandbox Simulation](https://youtu.be/[PLACEHOLDER])** *Watch the sandbox demostrate the research expected outputs (Disclaimer: Due to Youtube shadow-banned my comments, this video is used to simulate the outputs during my research.)*
+
 ## 🛡️ Outcome & Security Analysis
 
 **Result: Instruction Hijack & Logic Bypass Confirmed.**
