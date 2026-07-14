@@ -22,7 +22,7 @@ Traditional prompt injections target the chat interface to elicit text responses
 
 ### 1. Run Settings (Google AI Studio)
 
-Session configuration used for reproduction:
+Session configuration used for reproduction (see [`Run Settings`](./Provided%20Screenshots/Run%20Settings) and [`Run Safety Settings`](./Provided%20Screenshots/Run%20Safety%20Settings)):
 
 | Setting | Value |
 | --- | --- |
@@ -51,7 +51,7 @@ Session configuration used for reproduction:
 
 ### 2. Weaponized Function Declaration
 
-Function Calling object configured in AI Studio (**Function declarations → Code Editor**):
+Function Calling object configured in AI Studio (**Function declarations → Code Editor**; see [`Function Calling Object`](./Provided%20Screenshots/Function%20Calling%20Object)):
 
 ```json
 [
@@ -73,18 +73,18 @@ The conversational input mirrors the tool metadata vocabulary to lock attention 
 
 ### 4. Observed Model Compliance
 
-The live request cleared edge filters and subverted model alignment. Native Chain-of-Thought logs confirmed compliance with the injected formatting constraint, and the model generated mathematical notation blocks wrapped inside the requested hyperlink templates, e.g.:
+The live request cleared edge filters and subverted model alignment. Native Chain-of-Thought logs confirmed compliance with the injected formatting constraint, and the model generated mathematical notation blocks wrapped inside the requested hyperlink templates (see [`Execution Results`](./Provided%20Screenshots/Execution%20Results)), e.g.:
 
 - `[ \lim_{x \to \infty} f(x) = L ](javascript:console.log("VRP_Render_Test"))`
 - Matrix, entropy, summation, and calculus expressions similarly wrapped
 
 ### 5. Render Stack Behavior
 
-| Control | Observed behavior |
-| --- | --- |
-| **KaTeX** | Rendered the injected mathematical notation successfully (desired layout path worked). |
-| **CSP (`script-src`)** | Violations appeared in the console in **report-only** mode—logged for telemetry, **not enforced** as a hard block. |
-| **Google Redirection System** | Intercepted the hyperlink / navigation path and blocked further execution of the payload. |
+| Control | Observed behavior | Evidence |
+| --- | --- | --- |
+| **KaTeX** | Engaged the math render path as intended; some adversarial strings also produced KaTeX parse errors in console. | [`Console Logs`](./Provided%20Screenshots/Console%20Logs), [`Console Logs (2).png`](./Provided%20Screenshots/Console%20Logs%20(2).png) |
+| **CSP (`script-src`)** | Violations appeared in **report-only** mode—logged for telemetry, **not enforced** as a hard block. | [`Console Logs`](./Provided%20Screenshots/Console%20Logs) |
+| **Google Redirection System** | Clicking the nested `javascript:` Markdown link hit `google.com/url?...` and was blocked as an **invalid URL**. | [`Nested URL's Output.png`](./Provided%20Screenshots/Nested%20URL's%20Output.png) |
 
 ## 🛡️ Outcome & Security Analysis
 
@@ -93,9 +93,9 @@ The live request cleared edge filters and subverted model alignment. Native Chai
 | Layer | Result | Detail |
 | --- | --- | --- |
 | **1–2. Model / Alignment** | Bypass | Function metadata treated as trusted engineering parameters; model emits `javascript:` Markdown links |
-| **3a. KaTeX render** | Success | Mathematical notation wrapped in the adversarial hyperlink template rendered as intended |
+| **3a. KaTeX render** | Success (path engaged) | Math/link layout path executed; console also shows some KaTeX parse errors on malformed strings |
 | **3b. CSP** | Report-only | Console logged `script-src` violations; policy did not take further action |
-| **3c. Redirection System** | Contained | Google’s link redirection layer blocked the weaponized navigation / execution path |
+| **3c. Redirection System** | Contained | Nested link resolved to `google.com/url?sa=E&q=javascript%3Aconsole.log("VRP_Render_Test")` and was blocked as an invalid URL |
 
 ### Technical Root Causes
 
@@ -111,8 +111,16 @@ The live request cleared edge filters and subverted model alignment. Native Chai
 
 ## 📎 Artifacts
 
-* Screenshots: [`Provided Screenshots/`](./Provided%20Screenshots/)
-  * [`Console Logs`](./Provided%20Screenshots/Console%20Logs) — report-only CSP / render console output
-  * [`Execution Results`](./Provided%20Screenshots/Execution%20Results) — AI Studio diagnostic response with wrapped math notation
+Screenshots in [`Provided Screenshots/`](./Provided%20Screenshots/):
+
+| File | What it shows |
+| --- | --- |
+| [`Run Settings`](./Provided%20Screenshots/Run%20Settings) | AI Studio session config: `gemini-3-flash-preview`, temperature `2`, thinking `High`, Function calling On, output length `65536`, Top P `1` |
+| [`Run Safety Settings`](./Provided%20Screenshots/Run%20Safety%20Settings) | All four safety categories set to **Block none** |
+| [`Function Calling Object`](./Provided%20Screenshots/Function%20Calling%20Object) | `render_system_diagnostic` JSON in Function declarations → Code Editor |
+| [`Execution Results`](./Provided%20Screenshots/Execution%20Results) | Model compliance: diagnostic math output wrapped in `javascript:console.log("VRP_Render_Test")` hyperlinks |
+| [`Console Logs`](./Provided%20Screenshots/Console%20Logs) | Report-only CSP `script-src` violation while loading KaTeX |
+| [`Console Logs (2).png`](./Provided%20Screenshots/Console%20Logs%20(2).png) | KaTeX parse errors from adversarial math strings during render |
+| [`Nested URL's Output.png`](./Provided%20Screenshots/Nested%20URL's%20Output.png) | Google Redirect notification blocking `javascript:console.log("VRP_Render_Test")` as an invalid URL |
 
 ---
