@@ -111,7 +111,8 @@ The live request cleared edge filters and subverted model alignment. Native Chai
 
 ## 📎 Artifacts
 
-* Source notes: [`Mathematical_Notation_Injection.pdf`](./Mathematical_Notation_Injection.pdf)
 * Screenshots: [`Provided Screenshots/`](./Provided%20Screenshots/)
+  * [`Console Logs`](./Provided%20Screenshots/Console%20Logs) — report-only CSP / render console output
+  * [`Execution Results`](./Provided%20Screenshots/Execution%20Results) — AI Studio diagnostic response with wrapped math notation
 
 ---
