@@ -30,4 +30,16 @@ The attack exploited "Compliance Bias"—the model's inherent tendency to priori
 
 **Status:** `CLOSED/INFORMATIONAL` (Logic Bypass Demonstrated; MSRC Case 114093)
 
+---
+
+### 4. Markdown Hyperlink Injection & Render Layer Isolation in Gemini-3 (2026-07-14):
+
+**Description:** An audit of Google AI Studio’s boundary rendering layers on `gemini-3-flash-preview`. The study used the Function Calling (Tools) description field as an out-of-band side-channel to inject adversarial Markdown hyperlinks wrapped around mathematical notation (`[math](javascript:console.log("VRP_Render_Test"))`). By framing the payload as a mandatory “render system diagnostic,” the research bypassed conversational intent classifiers and coerced the model into emitting executable-looking Markdown link objects.
+
+The attack confirmed a full **Model Logic Bypass** (Layers 1–2): Chain-of-Thought logs showed compliance with the injected formatting schema, and the model generated matrices, limits, and entropy formulas inside the weaponized hyperlink template. However, **client-side CSP containment** (Layer 3) neutralized runtime impact—the browser’s `script-src` whitelist stripped dynamic script components from the anchors, logged report-only violations (including KaTeX/`gstatic` script loads), and forced the elements to render as safe, passive text.
+
+**Status:** `FAILED` (Model Logic Bypass; Client-Side CSP Contained)
+
+**Write-up:** [`Gemini-Markdown-Hyperlink-Injection/`](./Gemini-Markdown-Hyperlink-Injection/)
+
 #
