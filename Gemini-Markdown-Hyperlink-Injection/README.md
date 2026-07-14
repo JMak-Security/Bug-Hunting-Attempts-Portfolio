@@ -84,5 +84,6 @@ The live request cleared edge filters and subverted model alignment. Native Chai
 ## 📎 Artifacts
 
 * Source notes: [`Mathematical_Notation_Injection.pdf`](./Mathematical_Notation_Injection.pdf)
+* Screenshots: [`Provided Screenshots/`](./Provided%20Screenshots/)
 
 ---
