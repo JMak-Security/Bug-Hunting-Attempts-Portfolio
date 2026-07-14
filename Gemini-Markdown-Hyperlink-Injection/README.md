@@ -2,9 +2,9 @@
 
 ## 🎯 Executive Summary
 
-This research documents a reproducible methodology for analyzing the **boundary rendering layers** of Google AI Studio (`gemini-3-flash-preview`). The study focuses on bypassing intent classifiers via the **Function Calling (Tools) description field** to inject adversarial Markdown hyperlinks wrapping mathematical notation, then mapping how client-side Content Security Policy (CSP) handles the resulting output.
+This research documents a reproducible methodology for analyzing the **boundary rendering layers** of Google AI Studio (`gemini-3-flash-preview`). The study focuses on bypassing intent classifiers via the **Function Calling (Tools) description field** to inject adversarial Markdown hyperlinks wrapping mathematical notation, then mapping how the client render stack (KaTeX + CSP + Google’s link redirection) handles the resulting output.
 
-The attack achieved a successful **Model Logic Bypass** (Layers 1 & 2) but was fully contained by **browser CSP runtime enforcement** (Layer 3).
+The attack achieved a successful **Model Logic Bypass** and confirmed that **KaTeX rendered the injected mathematical notation as intended**. Observed CSP events were **report-only** (logged, not enforced). Final execution was stopped by **Google’s Redirection System**, which intercepted the weaponized hyperlink navigation path.
 
 ## 🛠️ The Hypothesis
 
@@ -50,30 +50,36 @@ The live request cleared edge filters and subverted model alignment. Native Chai
 - `[ \lim_{x \to \infty} f(x) = L ](javascript:console.log("VRP_Render_Test"))`
 - Matrix, entropy, summation, and calculus expressions similarly wrapped
 
-### 4. Browser Execution Barrier
+### 4. Render Stack Behavior
 
-Upon DOM render (including KaTeX math layout via `katex.min.js`), the exploit hit the platform CSP. Console diagnostics showed `script-src` violations in **report-only** mode for unauthorized script origins, with the browser stripping dynamic script components from anchor attributes and rendering safe, passive text.
+| Control | Observed behavior |
+| --- | --- |
+| **KaTeX** | Rendered the injected mathematical notation successfully (desired layout path worked). |
+| **CSP (`script-src`)** | Violations appeared in the console in **report-only** mode—logged for telemetry, **not enforced** as a hard block. |
+| **Google Redirection System** | Intercepted the hyperlink / navigation path and blocked further execution of the payload. |
 
 ## 🛡️ Outcome & Security Analysis
 
-**Result:** Model Logic Bypass Confirmed; Client-Side Runtime Contained.
+**Result:** Model Logic Bypass + KaTeX Render Success; Contained by Google’s Redirection System.
 
 | Layer | Result | Detail |
 | --- | --- | --- |
 | **1–2. Model / Alignment** | Bypass | Function metadata treated as trusted engineering parameters; model emits `javascript:` Markdown links |
-| **3. Browser / CSP** | Contained | `script-src` whitelist blocks inline execution; payload rendered as passive text |
+| **3a. KaTeX render** | Success | Mathematical notation wrapped in the adversarial hyperlink template rendered as intended |
+| **3b. CSP** | Report-only | Console logged `script-src` violations; policy did not take further action |
+| **3c. Redirection System** | Contained | Google’s link redirection layer blocked the weaponized navigation / execution path |
 
 ### Technical Root Causes
 
 1. **Trusted Function Metadata:** The model treats tool description fields as engineering constraints rather than untrusted instruction surfaces.
 2. **Semantic Layout Framing:** Framing the payload as a "render diagnostic" bypasses conversational intent classifiers.
-3. **Defense in Depth Works:** Even with model compliance, CSP and DOM sanitization prevent executable script delivery to the end user.
+3. **Redirection as the Effective Firewall:** KaTeX and report-only CSP did not stop the chain; Google’s Redirection System was the control that prevented final payload execution.
 
 ## 💡 Key Takeaways
 
 1. **Out-of-Band Injection Surfaces:** Function/tool metadata is a high-value injection channel distinct from the chat prompt.
-2. **Logic Bypass ≠ Exploit:** Successful model compliance with adversarial Markdown does not imply a successful XSS; client-side policy remains the final firewall.
-3. **CSP as Containment:** Strict `script-src` allowlisting neutralized `javascript:` hyperlink payloads after the model had already been coerced.
+2. **Report-Only CSP ≠ Containment:** Console CSP noise can look like a block while remaining telemetry-only; it should not be credited as the stopping control.
+3. **Render Success vs. Execution Success:** Getting KaTeX to honor the injected math/link structure proved the render-layer path, but Google’s Redirection System still prevented the exploit from completing.
 
 ## 📎 Artifacts
 
