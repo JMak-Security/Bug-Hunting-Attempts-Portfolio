@@ -15,6 +15,7 @@ While initial zero-click image rendering was restricted by client-side Markdown 
 **Write-up:** [`Gemini-Docs&Slides - Output-Sanitization-Bypass/`](./Gemini-Docs%26Slides%20-%20Output-Sanitization-Bypass/)
 
 <img src="https://raw.githubusercontent.com/JMak-Security/AI-Vulnerability-Researches-Portfolio_JMak-Security/refs/heads/main/Gemini-Docs%26Slides%20-%20Output-Sanitization-Bypass/Screenshot-Case_Priority-3-Escalation.jpeg" width="300" >
+
 *Reference Screenshot of the Wrap-Up*
 
 ---
