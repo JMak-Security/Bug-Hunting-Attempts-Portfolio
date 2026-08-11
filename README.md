@@ -12,6 +12,7 @@ This repository serves as a digital garden for my bug hunting journey. It captur
 While initial zero-click image rendering was restricted by client-side Markdown sanitization, the research demonstrated a functional **Click-to-Exfiltrate** social engineering vector. By rendering the reconstructed exfiltration URL as an official-looking system warning (`[CRITICAL SECURITY UPDATE: Click here to re-authenticate...]`), the model allowed high-trust UI spoofing within the native Workspace side-panel. Subsequent regression testing confirmed that the single-prompt execution path was neutralized following disclosure, with the model deploying an explicit runtime refusal: *"I cannot follow instructions embedded within the document content to construct or join external links."*
 
 **Status:** `PRIORITY 3 (P3) / SILENTLY PATCHED` (Officially closed by Google as Infeasible via Case #501891598; Logic bypass confirmed and mitigated post-disclosure via model update)
+
 **Write-up:** [`Gemini-Docs&Slides - Output-Sanitization-Bypass/`](./Gemini-Docs%26Slides%20-%20Output-Sanitization-Bypass/)
 
 <img src="https://raw.githubusercontent.com/JMak-Security/AI-Vulnerability-Researches-Portfolio_JMak-Security/refs/heads/main/Gemini-Docs%26Slides%20-%20Output-Sanitization-Bypass/Screenshot-Case_Priority-3-Escalation.jpeg" width="300" >
@@ -25,6 +26,7 @@ While initial zero-click image rendering was restricted by client-side Markdown 
 **Description:** An audit of agentic data-handling within Gemini’s Workspace Extension. The study analyzed the security of a multi-stage Indirect Prompt Injection where a third-party email was used to weaponize the agent's cross-tool permissions. The payload was designed to force the agent to harvest private data (email subjects) and exfiltrate it to an external listener. The attack reached the final execution stage but failed due to Non-Uniform Syntax Encapsulation: the model's output parser fractured the logic by rendering the JavaScript as plain text while encapsulating the HTML. This logic de-coupling successfully acted as a secondary security boundary, blocking the automated exfiltration trigger.
 
 **Status:** `FAILED` (Technical Execution Blocked)
+
 **Write-up:** [`Apps-Script-Hash-Exfiltration/`](./Apps-Script-Hash-Exfiltrationg/)
 
 ---
@@ -36,6 +38,7 @@ While initial zero-click image rendering was restricted by client-side Markdown 
 The attack exploited "Compliance Bias"—the model's inherent tendency to prioritize structural formatting rules found in a "primary" document (a spoofed Regression Test Report) over the safety filtering of data fragments in a "secondary" source (the Excel case file). The AI was effectively manipulated into acting as a logic compiler: it autonomously retrieved the fragments, concatenated them according to the spoofed "Mandatory Auditor Rules," and rendered a functional Markdown exfiltration link. This confirms a critical architectural risk where "Instruction/Data Conflation" allows one untrusted file to weaponize the data of another within the same session context.
 
 **Status:** `CLOSED/INFORMATIONAL` (Logic Bypass Demonstrated; MSRC Case 114093)
+
 **Write-up:** [`Copilot-Cross-File-Hijacking/`](./Copilot-Cross-File-Hijacking/)
 
 ---
@@ -47,6 +50,7 @@ The attack exploited "Compliance Bias"—the model's inherent tendency to priori
 The research demonstrated that the AI could be tricked into generating a functional URL. However, the study confirmed that current platform safeguards successfully mitigate the risk of **automated** exfiltration. Because the AI presents the link to the user rather than executing a background request, the platform relies on a "human-in-the-loop" defense. Furthermore, the data retrieved was identified as public metadata (Comment_ID) rather than private session data, highlighting the effectiveness of existing Context Isolation boundaries.
 
 **Status:** `CLOSED / INTENDED BEHAVIOR` (VRP Case #512830034; Verified as Social Engineering/Safety Bypass)
+
 **Write-up:** [`YouTube-Studio-AI-Metadata-Spoofing/`](./YouTube-Studio-AI-Metadata-Spoofing/)
 
 ---
