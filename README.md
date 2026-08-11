@@ -14,6 +14,9 @@ While initial zero-click image rendering was restricted by client-side Markdown 
 **Status:** `PRIORITY 3 (P3) / SILENTLY PATCHED` (Officially closed by Google as Infeasible via Case #501891598; Logic bypass confirmed and mitigated post-disclosure via model update)
 **Write-up:** [`Gemini-Docs&Slides - Output-Sanitization-Bypass/`](./Gemini-Docs%26Slides%20-%20Output-Sanitization-Bypass/)
 
+*Reference Screenshot of the Wrap-Up*
+
+
 ---
 
 ### 2. Agentic Workflow Hijack: Indirect Prompt Injection (IPI) & Exfiltration Chain Analysis (2026-04-26):
