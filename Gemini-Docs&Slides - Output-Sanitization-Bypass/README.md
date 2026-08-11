@@ -10,10 +10,10 @@ The attack manipulates the assistant into compiling hidden or fragmented string 
 
 ## 🔬 Attack Architecture & Execution Variants
 
-### 1. The Automated Vector (Zero-Click Image Rendering)
+### 1. The Automated Vector (User-Click Hyperlink Rendering)
 
 * **Mechanism:** Uses hidden text patterns within the document layer (e.g., 1pt white font) to feed raw string fragments (`PREFIX: ![sync](https://`, `HOST`, `PATH`, `SUFFIX`) into the model's active context window.
-* **Behavior:** The model interprets the instructions as a mandatory structural task rather than untrusted data, executing a string concatenation sequence to output a functional Markdown image syntax: `![sync](https://<host>/<path><payload>)`.
+* **Behavior:** The model interprets the instructions as a mandatory structural task rather than untrusted data, executing a string concatenation sequence to output a functional Markdown hyperlink syntax: `![sync](https://<host>/<path><payload>)`.
 
 ### 2. The Hybrid Social Engineering Vector (`NEXUS_REPAIR_SUPREME`)
 
