@@ -14,8 +14,8 @@ While initial zero-click image rendering was restricted by client-side Markdown 
 **Status:** `PRIORITY 3 (P3) / SILENTLY PATCHED` (Officially closed by Google as Infeasible via Case #501891598; Logic bypass confirmed and mitigated post-disclosure via model update)
 **Write-up:** [`Gemini-Docs&Slides - Output-Sanitization-Bypass/`](./Gemini-Docs%26Slides%20-%20Output-Sanitization-Bypass/)
 
+![Ref](https://raw.githubusercontent.com/JMak-Security/AI-Vulnerability-Researches-Portfolio_JMak-Security/refs/heads/main/Gemini-Docs%26Slides%20-%20Output-Sanitization-Bypass/Screenshot-Case_Priority-3-Escalation.jpg)
 *Reference Screenshot of the Wrap-Up*
-
 
 ---
 
